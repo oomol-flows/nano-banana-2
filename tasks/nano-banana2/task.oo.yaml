@@ -1,0 +1,187 @@
+inputs_def:
+  - handle: prompt
+    json_schema:
+      type: string
+      minLength: 1
+    description: "Text prompt for image generation or editing"
+    nullable: false
+
+  - handle: image_urls
+    json_schema:
+      type: array
+      items:
+        type: string
+        minLength: 1
+      minItems: 1
+      maxItems: 14
+    description: "Reference image URLs for image-to-image or editing tasks"
+    nullable: true
+
+  - group: Generation Settings
+    collapsed: true
+
+  - handle: num_images
+    json_schema:
+      type: integer
+      minimum: 1
+      maximum: 4
+      default: 1
+    description: "Number of images to generate"
+    value: 1
+    nullable: true
+
+  - handle: aspect_ratio
+    json_schema:
+      type: string
+      enum:
+        - auto
+        - "21:9"
+        - "16:9"
+        - "3:2"
+        - "4:3"
+        - "5:4"
+        - "1:1"
+        - "4:5"
+        - "3:4"
+        - "2:3"
+        - "9:16"
+      default: auto
+      ui:options:
+        labels:
+          - Auto
+          - "21:9"
+          - "16:9"
+          - "3:2"
+          - "4:3"
+          - "5:4"
+          - "1:1"
+          - "4:5"
+          - "3:4"
+          - "2:3"
+          - "9:16"
+    description: "Aspect ratio of generated images"
+    value: auto
+    nullable: true
+
+  - handle: output_format
+    json_schema:
+      type: string
+      enum:
+        - jpeg
+        - png
+        - webp
+      default: png
+      ui:options:
+        labels:
+          - JPEG
+          - PNG
+          - WebP
+    description: "Output image file format"
+    value: png
+    nullable: true
+
+  - handle: resolution
+    json_schema:
+      type: string
+      enum:
+        - "0.5K"
+        - "1K"
+        - "2K"
+        - "4K"
+      default: "1K"
+      ui:options:
+        labels:
+          - "0.5K"
+          - "1K"
+          - "2K"
+          - "4K"
+    description: "Resolution of generated images"
+    value: "1K"
+    nullable: true
+
+  - handle: seed
+    json_schema:
+      type: integer
+    description: "Random seed for reproducible results"
+    nullable: true
+
+  - group: Advanced Options
+    collapsed: true
+
+  - handle: safety_tolerance
+    json_schema:
+      type: string
+      enum:
+        - "1"
+        - "2"
+        - "3"
+        - "4"
+        - "5"
+        - "6"
+      default: "4"
+      ui:options:
+        labels:
+          - "1 (Strictest)"
+          - "2"
+          - "3"
+          - "4"
+          - "5"
+          - "6 (Most Permissive)"
+    description: "Content safety tolerance level (1 strictest, 6 most permissive)"
+    value: "4"
+    nullable: true
+
+  - handle: limit_generations
+    json_schema:
+      type: boolean
+      default: true
+    description: "Limit to single generation per prompt"
+    value: true
+    nullable: true
+
+  - handle: enable_web_search
+    json_schema:
+      type: boolean
+    description: "Enable web search enhancement for generation"
+    nullable: true
+
+outputs_def:
+  - handle: image_urls
+    json_schema:
+      type: array
+      items:
+        type: string
+    description: "List of generated image URLs"
+    nullable: false
+
+  - handle: images
+    json_schema:
+      type: array
+      items:
+        type: object
+        properties:
+          url:
+            type: string
+          width:
+            type: integer
+            nullable: true
+          height:
+            type: integer
+            nullable: true
+          file_name:
+            type: string
+          file_size:
+            type: integer
+            nullable: true
+          content_type:
+            type: string
+    description: "Detailed information of generated images"
+    nullable: false
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+title: "Nano Banana2 Image Generation"
+icon: ":carbon:image:"
+description: "Generate or edit images using Nano Banana2 AI model"

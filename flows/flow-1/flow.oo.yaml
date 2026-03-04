@@ -1,0 +1,25 @@
+nodes:
+  - node_id: nano_banana2#1
+    task: self::nano-banana2
+    inputs_from:
+      - handle: prompt
+        value: "山上都是企鹅"
+      - handle: image_urls
+        value:
+          - https://v3b.fal.media/files/b/0a90cd23/ZQbM_f4QIrdyZEyra7BVQ_Lw7TAaW0.png
+      - handle: num_images
+        value: 1
+      - handle: aspect_ratio
+        value: "16:9"
+      - handle: output_format
+        value: "png"
+      - handle: resolution
+        value: "1K"
+      - handle: seed
+        value:
+      - handle: safety_tolerance
+        value: "4"
+      - handle: limit_generations
+        value: true
+      - handle: enable_web_search
+        value:
