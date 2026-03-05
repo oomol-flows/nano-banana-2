@@ -1,12 +1,13 @@
 inputs_def:
   - handle: prompt
+    description: Text prompt for image generation or editing
     json_schema:
       type: string
-      minLength: 1
-    description: "Text prompt for image generation or editing"
+      ui:widget: text
     nullable: false
 
   - handle: image_urls
+    description: Reference image URLs for image-to-image or editing tasks
     json_schema:
       type: array
       items:
@@ -14,56 +15,56 @@ inputs_def:
         minLength: 1
       minItems: 1
       maxItems: 14
-    description: "Reference image URLs for image-to-image or editing tasks"
     nullable: true
 
   - group: Generation Settings
     collapsed: true
 
   - handle: num_images
+    description: Number of images to generate
     json_schema:
       type: integer
       minimum: 1
       maximum: 4
       default: 1
-    description: "Number of images to generate"
     value: 1
     nullable: true
 
   - handle: aspect_ratio
+    description: Aspect ratio of generated images
     json_schema:
       type: string
       enum:
         - auto
-        - "21:9"
-        - "16:9"
-        - "3:2"
-        - "4:3"
-        - "5:4"
-        - "1:1"
-        - "4:5"
-        - "3:4"
-        - "2:3"
-        - "9:16"
+        - 21:9
+        - 16:9
+        - 3:2
+        - 4:3
+        - 5:4
+        - 1:1
+        - 4:5
+        - 3:4
+        - 2:3
+        - 9:16
       default: auto
       ui:options:
         labels:
           - Auto
-          - "21:9"
-          - "16:9"
-          - "3:2"
-          - "4:3"
-          - "5:4"
-          - "1:1"
-          - "4:5"
-          - "3:4"
-          - "2:3"
-          - "9:16"
-    description: "Aspect ratio of generated images"
+          - 21:9
+          - 16:9
+          - 3:2
+          - 4:3
+          - 5:4
+          - 1:1
+          - 4:5
+          - 3:4
+          - 2:3
+          - 9:16
     value: auto
     nullable: true
 
   - handle: output_format
+    description: Output image file format
     json_schema:
       type: string
       enum:
@@ -76,39 +77,39 @@ inputs_def:
           - JPEG
           - PNG
           - WebP
-    description: "Output image file format"
     value: png
     nullable: true
 
   - handle: resolution
+    description: Resolution of generated images
     json_schema:
       type: string
       enum:
-        - "0.5K"
-        - "1K"
-        - "2K"
-        - "4K"
-      default: "1K"
+        - 0.5K
+        - 1K
+        - 2K
+        - 4K
+      default: 1K
       ui:options:
         labels:
-          - "0.5K"
-          - "1K"
-          - "2K"
-          - "4K"
-    description: "Resolution of generated images"
-    value: "1K"
+          - 0.5K
+          - 1K
+          - 2K
+          - 4K
+    value: 1K
     nullable: true
 
   - handle: seed
+    description: Random seed for reproducible results
     json_schema:
       type: integer
-    description: "Random seed for reproducible results"
     nullable: true
 
   - group: Advanced Options
     collapsed: true
 
   - handle: safety_tolerance
+    description: Content safety tolerance level (1 strictest, 6 most permissive)
     json_schema:
       type: string
       enum:
@@ -121,28 +122,27 @@ inputs_def:
       default: "4"
       ui:options:
         labels:
-          - "1 (Strictest)"
+          - 1 (Strictest)
           - "2"
           - "3"
           - "4"
           - "5"
-          - "6 (Most Permissive)"
-    description: "Content safety tolerance level (1 strictest, 6 most permissive)"
+          - 6 (Most Permissive)
     value: "4"
     nullable: true
 
   - handle: limit_generations
+    description: Limit to single generation per prompt
     json_schema:
       type: boolean
       default: true
-    description: "Limit to single generation per prompt"
     value: true
     nullable: true
 
   - handle: enable_web_search
+    description: Enable web search enhancement for generation
     json_schema:
       type: boolean
-    description: "Enable web search enhancement for generation"
     nullable: true
 
 outputs_def:
