@@ -1,0 +1,32 @@
+title: "%test-nano-banana2-download%"
+description: "%test-the-nano-banana2-download-subflow%"
+
+nodes:
+  - node_id: download#1
+    subflow: self::nano-banana2-image-generate
+    title: "%generate-and-download-images%"
+    icon: ":carbon:download:"
+    inputs_from:
+      - handle: prompt
+        value: "我是一个x 用户，也是oomol 的开发者，参考图片是oomol 的icon 为我的x
+          个人信息页面生成一张壮丽的风景图作为背景图，要求有oomol icon 的元素，自然融入图片，图中不要有任何文字，oomol
+          的特征可以稍微明显一些"
+      - handle: image_urls
+        value:
+          - https://oomol.com/img/logo2x.png
+      - handle: num_images
+        value: 2
+      - handle: aspect_ratio
+        value: "16:9"
+      - handle: output_format
+        value: "png"
+      - handle: resolution
+        value: "1K"
+      - handle: seed
+        value:
+      - handle: safety_tolerance
+        value: "4"
+      - handle: limit_generations
+        value: true
+      - handle: enable_web_search
+        value:

@@ -1,4 +1,4 @@
-version: 0.0.3
+version: 0.1.0
 displayName: "%nano-banana-2%"
 description: "%create-and-edit-images-using-ai-simply-describe-what-you-want-an%"
 scripts:
@@ -8,4 +8,7 @@ scripts:
 name: nano-banana-2
 repository: https://github.com/oomol-flows/nano-banana-2.git
 icon: ./icon.png
-releaseNotes: "chore: update param type"
+releaseNotes: "fix: return file path, not url"
+dependencies:
+  array: 0.1.5
+  downloader: 0.1.5

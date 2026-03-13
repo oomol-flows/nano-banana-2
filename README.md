@@ -1,75 +1,59 @@
 # Nano Banana 2
 
-## What This Project Does
+## Project Overview
 
-Nano Banana 2 helps you create and edit images using AI. Simply describe what you want in plain language, and it will generate beautiful images for you. You can also provide reference images to guide the creation process.
+Nano Banana 2 is an AI-powered image generation package that creates images from text descriptions. It supports text-to-image generation and image-to-image editing with reference images. The package provides flexible output options including multiple formats, aspect ratios, and resolutions.
 
-Think of it as having a professional digital artist at your fingertips — ready to bring your ideas to life in seconds.
+## Block Capabilities
 
-## Key Features
+### Task Block: Nano Banana2 Image Generation
 
-### AI Image Generation
+Generates AI images from text prompts. Supports image-to-image editing with reference URLs. Outputs image URLs and metadata including dimensions, file size, and content type.
 
-Turn your text descriptions into stunning images. Whether you need a serene mountain landscape, a futuristic city scene, or an abstract art piece, just describe it and watch it appear.
+**Key inputs:**
+- `prompt` (required): Text description of desired image
+- `image_urls` (optional): Reference images for editing (1-14 URLs)
+- `num_images`: Number of images to generate (1-4)
+- `aspect_ratio`: Output dimensions (auto, 21:9, 16:9, etc.)
+- `output_format`: JPEG, PNG, or WebP
+- `resolution`: 0.5K to 4K quality
 
-### Image Editing with References
+### Subflow Block: Nano Banana2 Download
 
-Already have an image you like? Provide reference images and let the AI create variations or enhancements based on your original. Perfect for refining concepts or exploring different styles.
+Generates images and automatically downloads them to local files. Combines image generation with batch download functionality. Outputs local file paths for further processing.
 
-### Flexible Output Options
+## Block Combination Suggestions
 
-Choose the image format, size, and quality that fits your needs:
-- **Formats**: JPEG, PNG, or WebP
-- **Aspect Ratios**: From wide panoramic (21:9) to vertical portraits (9:16)
-- **Resolutions**: From quick previews (0.5K) to high-detail outputs (4K)
+- **Content Creation Pipeline**: Use Nano Banana2 Download to generate images and save locally, then connect to image processing blocks for resizing or format conversion.
+- **Batch Generation**: Generate multiple images with different seeds, then use array blocks to organize and process results.
+- **Reference-Based Editing**: Provide reference image URLs to create variations or style transfers of existing images.
 
-## Practical Uses
+## Basic Usage
 
-### Creative Projects
+1. Enter a descriptive text prompt (be specific about style, subject, and composition)
+2. Optionally add reference image URLs for guided generation
+3. Select output format, aspect ratio, and resolution
+4. Run the block to generate images
+5. Use returned URLs or file paths for display or further processing
 
-- Generate unique artwork for personal or professional use
-- Create concept art for stories, games, or presentations
-- Design custom backgrounds and wallpapers
+## Examples
 
-### Content Creation
+**Text-to-Image Generation:**
+```
+Prompt: "A serene mountain lake at sunset with reflections in the water"
+Output: Array of image URLs
+```
 
-- Produce eye-catching visuals for social media posts
-- Create illustrations for blog articles or newsletters
-- Design thumbnails and cover images
+**Image Editing with Reference:**
+```
+Prompt: "Transform this photo into watercolor style"
+Reference URLs: ["https://example.com/photo.jpg"]
+Output: Styled image URLs
+```
 
-### Design Exploration
-
-- Quickly visualize ideas before committing to detailed work
-- Explore different color schemes and compositions
-- Generate multiple variations to compare options
-
-### Reference-Based Editing
-
-- Transform existing images into new styles
-- Create variations of favorite artwork
-- Enhance or modify photos with AI assistance
-
-## Tips for Best Results
-
-### Writing Good Descriptions
-
-Be specific about what you want. Instead of "a dog," try "a golden retriever playing in autumn leaves at sunset." The more details you provide, the better the results.
-
-### Using Reference Images
-
-When providing reference images, choose ones that clearly show the style, composition, or subject you want. The AI will use these as inspiration for the new creation.
-
-### Choosing the Right Settings
-
-- **Higher resolutions** (2K, 4K) are great for prints or detailed work
-- **Lower resolutions** (0.5K, 1K) work well for quick previews and web use
-- **Aspect ratio** should match where you plan to use the image
-
-## Getting Started
-
-1. Enter your image description in the prompt field
-2. Optionally add reference images if you want to guide the style
-3. Choose your preferred format, size, and quality
-4. Click generate and wait for your images
-
-That's it! Your AI-generated images will be ready in moments.
+**Download Generated Images:**
+```
+Use Nano Banana2 Download subflow
+Prompt: "A futuristic city skyline at night"
+Output: Local file paths of downloaded images
+```
