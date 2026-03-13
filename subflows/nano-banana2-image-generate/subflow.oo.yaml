@@ -159,10 +159,19 @@ outputs_from:
         output_handle: array
 
 nodes:
-  - node_id: generator#1
-    task: nano-banana-2::nano-banana2
-    title: "%generate-images%"
-    icon: ":carbon:image:"
+  - node_id: map#1
+    title: "%map-1%"
+    inputs_from:
+      - handle: array
+        from_node:
+          - node_id: nano-banana2-generation#1
+            output_handle: image_urls
+    subflow: array::map
+    slots:
+      - slot_node_id: +slot#2
+        slotflow: self::+slotflow#1
+  - node_id: nano-banana2-generation#1
+    title: "Nano Banana2 Image Generation #1"
     inputs_from:
       - handle: prompt
         from_flow:
@@ -171,40 +180,36 @@ nodes:
         from_flow:
           - input_handle: image_urls
       - handle: num_images
+        value: 1
         from_flow:
           - input_handle: num_images
       - handle: aspect_ratio
+        value: auto
         from_flow:
           - input_handle: aspect_ratio
       - handle: output_format
+        value: png
         from_flow:
           - input_handle: output_format
       - handle: resolution
+        value: 1K
         from_flow:
           - input_handle: resolution
       - handle: seed
         from_flow:
           - input_handle: seed
       - handle: safety_tolerance
+        value: "4"
         from_flow:
           - input_handle: safety_tolerance
       - handle: limit_generations
+        value: true
         from_flow:
           - input_handle: limit_generations
       - handle: enable_web_search
         from_flow:
           - input_handle: enable_web_search
-  - node_id: map#1
-    title: "%map-1%"
-    inputs_from:
-      - handle: array
-        from_node:
-          - node_id: generator#1
-            output_handle: image_urls
-    subflow: array::map
-    slots:
-      - slot_node_id: +slot#2
-        slotflow: self::+slotflow#1
+    task: self::nano-banana2-generation
 
 title: "%nano-banana2-download%"
 icon: ":carbon:download:"

@@ -31,7 +31,6 @@
   "limit-to-single-generation-per-prompt-default-is-true2": "每个提示仅限生成一次。默认值为 true。",
   "enable-web-search-to-enhance-generation-with-real-world-referenc2": "启用网页搜索，以通过真实世界的参考资料提升生成效果。可选。",
   "array-of-local-file-paths-where-downloaded-images-are-saved-use": "已下载图片保存的本地文件路径数组。请使用这些路径进行后续处理或显示。",
-  "generate-images": "生成图片",
   "map-1": "地图 #1",
   "url-to-file-1": "文件 #1 的 URL"
 }
