@@ -1,4 +1,4 @@
-version: 0.1.3
+version: 0.1.4
 displayName: "%nano-banana-2%"
 description: "%create-and-edit-images-using-ai-simply-describe-what-you-want-an%"
 scripts:
@@ -8,7 +8,7 @@ scripts:
 name: nano-banana-2
 repository: https://github.com/oomol-flows/nano-banana-2.git
 icon: ./icon.png
-releaseNotes: "fix: update input type"
+releaseNotes: "fix: throw correct error"
 dependencies:
   array: 0.1.9
   downloader: 0.1.5

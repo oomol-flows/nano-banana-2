@@ -16,6 +16,8 @@ inputs_def:
         format: uri
       minItems: 1
       maxItems: 14
+    value:
+      - ""
     nullable: true
 
   - group: Generation Settings

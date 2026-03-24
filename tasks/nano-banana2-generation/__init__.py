@@ -83,14 +83,19 @@ async def main(params: Inputs, context: Context) -> Outputs:
         attempts += 1
         progress = min(10 + int((attempts / MAX_POLL_ATTEMPTS) * 80), 90)
         context.report_progress(progress)
-
+        print(f'attempts: {attempts}')
         try:
             result_response = requests.get(poll_url, headers=headers, timeout=30)
-            result_response.raise_for_status()
+            
+            # Print body before throwing error for 400+ status
+            if result_response.status_code >= 400:
+                raise Exception(f"Failed to get result: {result_response.status_code}, error: {result_response.text}")
+
             result_data = result_response.json()
 
             if not result_data.get("success"):
                 # Task might still be processing, continue polling
+                print(f"Task not successful yet: {result_data}")
                 await asyncio.sleep(POLL_INTERVAL)
                 continue
 
@@ -122,8 +127,20 @@ async def main(params: Inputs, context: Context) -> Outputs:
             # Continue polling for other states (e.g., "processing", "pending")
             await asyncio.sleep(POLL_INTERVAL)
 
+        except requests.exceptions.Timeout as e:
+            # Timeout error, continue polling
+            print(f"Request timeout (attempt {attempts}): {e}")
+            await asyncio.sleep(POLL_INTERVAL)
+            continue
+        except requests.exceptions.HTTPError as e:
+            # HTTP error (4xx, 5xx), print error and stop
+            status_code = e.response.status_code if e.response else "unknown"
+            error_content = e.response.text if e.response else str(e)
+            print(f"HTTP error {status_code}: {error_content}")
+            raise ValueError(f"HTTP error {status_code}: {error_content}")
         except requests.exceptions.RequestException as e:
-            # Network error, continue polling
+            # Other network errors, continue polling
+            print(f"Request error (attempt {attempts}): {e}")
             await asyncio.sleep(POLL_INTERVAL)
             continue
 
