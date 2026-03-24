@@ -13,9 +13,9 @@ inputs_def:
       items:
         type: string
         minLength: 1
+        format: uri
       minItems: 1
       maxItems: 14
-
     value:
     nullable: true
   - handle: num_images
@@ -101,7 +101,6 @@ inputs_def:
     description: "%optional-random-seed-for-reproducible-results-same-seed-same-pro2%"
     json_schema:
       type: integer
-
     value:
     nullable: true
   - handle: safety_tolerance
@@ -139,7 +138,6 @@ inputs_def:
     description: "%enable-web-search-to-enhance-generation-with-real-world-referenc2%"
     json_schema:
       type: boolean
-
     value:
     nullable: true
 outputs_def:

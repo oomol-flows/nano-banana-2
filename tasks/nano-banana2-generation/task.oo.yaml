@@ -13,6 +13,7 @@ inputs_def:
       items:
         type: string
         minLength: 1
+        format: uri
       minItems: 1
       maxItems: 14
     nullable: true
